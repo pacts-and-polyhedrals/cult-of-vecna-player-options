@@ -1,1 +1,5 @@
-2026/06/04-22:27:28.843324 140606719086720 Delete type=3 #1
+2026/06/04-22:38:24.550622 7f6376ffd6c0 Delete type=3 #1
+2026/06/04-22:38:24.555207 7f6375ffb6c0 Level-0 table #5: started
+2026/06/04-22:38:24.557659 7f6375ffb6c0 Level-0 table #5: 66825 bytes OK
+2026/06/04-22:38:24.558506 7f6375ffb6c0 Delete type=0 #3
+2026/06/04-22:38:24.558577 7f6375ffb6c0 Manual compaction at level-0 from '!actors!8rZ8sVPjSISjU17B' @ 72057594037927935 : 1 .. '!actors.items!wm8m0zY6D967iaGc.uPhjANBRyZlXfFYS' @ 0 : 0; will stop at (end)
