@@ -1,0 +1,91 @@
+{
+  "id": "cult-of-vecna-player-options",
+  "title": "Cult of Vecna \u2014 Player Options",
+  "description": "A D&D 5e content module for Foundry VTT v13\u2013v14. Contains the School of Orthogenesis wizard subclass, Cleric Domain: Whispered Agony, Paladin Oath: Forbidden Secrets, all associated spells and class features, the complete Diane Clearwater bestiary (CR \u00bd to CR 21), the Eight Doors of Knowing poem collection, and full GM lore and adventure hooks. Created by DM Asmo of Pacts and Polyhedrals.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "DM Asmo",
+      "url": "https://github.com/pacts-and-polyhedrals",
+      "flags": {}
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14",
+    "maximum": "14"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "4.0.0",
+          "verified": "5.3.3"
+        }
+      }
+    ]
+  },
+  "scripts": [
+    "scripts/cult-of-vecna-player-options.mjs"
+  ],
+  "styles": [
+    "styles/cult-of-vecna-player-options.css"
+  ],
+  "packs": [
+    {
+      "name": "actors",
+      "label": "Cult of Vecna \u2014 Bestiary",
+      "path": "packs/actors",
+      "type": "Actor",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "subclasses-and-features",
+      "label": "Cult of Vecna \u2014 Subclasses & Features",
+      "path": "packs/subclasses-and-features",
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "spells",
+      "label": "Cult of Vecna \u2014 Spells",
+      "path": "packs/spells",
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "lore",
+      "label": "Cult of Vecna \u2014 Lore & GM Notes",
+      "path": "packs/lore",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {},
+      "system": "dnd5e"
+    }
+  ],
+  "url": "https://github.com/pacts-and-polyhedrals/cult-of-vecna-player-options",
+  "manifest": "https://raw.githubusercontent.com/pacts-and-polyhedrals/cult-of-vecna-player-options/main/module.json",
+  "download": "https://github.com/pacts-and-polyhedrals/cult-of-vecna-player-options/releases/download/v1.0.0/cult-of-vecna-player-options-v1.0.0.zip",
+  "changelog": "https://github.com/pacts-and-polyhedrals/cult-of-vecna-player-options/blob/main/CHANGELOG.md",
+  "license": "Homebrew content for private table use. Dungeons & Dragons, Foundry VTT, and Vecna are trademarks owned by their respective rights holders. Module created by DM Asmo / Pacts and Polyhedrals."
+}
