@@ -45,10 +45,10 @@ function showInstallDialog() {
         <hr style="border-color:#3a2810;margin:0 0 1rem;"/>
         <p style="margin:0 0 0.5rem;"><strong>The Ninth School</strong> can install all compendium content into named world folders:</p>
         <ul style="margin:0.5rem 0 0.75rem 1.25rem;color:#8b6530;font-style:italic;line-height:2;">
-          <li>The Ninth School — Actors <span style="color:#6b5020;">(8 NPC actors, CR ½–21)</span></li>
-          <li>The Ninth School — Spells <span style="color:#6b5020;">(44 spells)</span></li>
-          <li>The Ninth School — Features <span style="color:#6b5020;">(24 subclass features)</span></li>
-          <li>The Ninth School — Lore <span style="color:#6b5020;">(4 journals)</span></li>
+          <li>Cult of Vecna — Actors <span style="color:#6b5020;">(8 NPC actors, CR ½–21)</span></li>
+          <li>Cult of Vecna — Spells <span style="color:#6b5020;">(44 spells)</span></li>
+          <li>Cult of Vecna — Features <span style="color:#6b5020;">(24 subclass features)</span></li>
+          <li>Cult of Vecna — Lore <span style="color:#6b5020;">(4 journals)</span></li>
         </ul>
         <p style="margin:0;font-size:11px;color:#6b5020;">This prompt will not appear again after you choose.</p>
       </div>`,
@@ -76,17 +76,17 @@ function showInstallDialog() {
 
 async function installContent() {
   const FOLDERS = [
-    { name: "The Ninth School — Actors",   type: "Actor",        color: "#3a1f0a" },
-    { name: "The Ninth School — Spells",   type: "Item",         color: "#1a0a2e" },
-    { name: "The Ninth School — Features", type: "Item",         color: "#0a1a0a" },
-    { name: "The Ninth School — Lore",     type: "JournalEntry", color: "#1a1010" },
+    { name: "Cult of Vecna — Actors",   type: "Actor",        color: "#3a1f0a" },
+    { name: "Cult of Vecna — Spells",   type: "Item",         color: "#1a0a2e" },
+    { name: "Cult of Vecna — Features", type: "Item",         color: "#0a1a0a" },
+    { name: "Cult of Vecna — Lore",     type: "JournalEntry", color: "#1a1010" },
   ];
 
   const PACK_MAP = {
-    "actors":                  { folder: "The Ninth School — Actors",   collKey: "actors"  },
-    "spells":                  { folder: "The Ninth School — Spells",   collKey: "items"   },
-    "subclasses-and-features": { folder: "The Ninth School — Features", collKey: "items"   },
-    "lore":                    { folder: "The Ninth School — Lore",     collKey: "journal" },
+    "actors":                  { folder: "Cult of Vecna — Actors",   collKey: "actors"  },
+    "spells":                  { folder: "Cult of Vecna — Spells",   collKey: "items"   },
+    "subclasses-and-features": { folder: "Cult of Vecna — Features", collKey: "items"   },
+    "lore":                    { folder: "Cult of Vecna — Lore",     collKey: "journal" },
   };
 
   ui.notifications?.info(`${MODULE_TITLE}: Installing content — please wait...`);
@@ -106,16 +106,13 @@ async function installContent() {
   for (const [packName, { folder, collKey }] of Object.entries(PACK_MAP)) {
     const pack = game.packs.get(`${MODULE_ID}.${packName}`);
     if (!pack) { console.warn(`${MODULE_TITLE} | Pack not found: ${packName}`); continue; }
-    const docs = await pack.getDocuments();
-    const fid  = folderIds[folder];
-    for (const doc of docs) {
-      const data  = doc.toObject();
-      data.folder = fid;
-      const coll  = game[collKey];
-      if (!coll?.find(d => d.name === data.name)) {
-        await doc.constructor.create(data);
-        total++;
-      }
+    const index = await pack.getIndex();
+    const fid   = folderIds[folder];
+    for (const entry of index) {
+      const coll = game[collKey];
+      if (coll?.find(d => d.name === entry.name)) continue;
+      await pack.collection.importFromCompendium(pack, entry._id, { folder: fid }, { keepId: true });
+      total++;
     }
   }
   ui.notifications?.info(`${MODULE_TITLE}: Done — ${total} documents added to named folders.`);
